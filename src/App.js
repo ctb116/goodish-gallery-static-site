@@ -24,7 +24,7 @@ import "./style.css";
 
 
 export default function App() {
-  
+
   const artWallDisplay = {
     width: '50%'
   }
@@ -39,8 +39,6 @@ export default function App() {
   );
 }
 
-// really this just displays an image. How that image is displayed could change on the CSS
-// responsible for a grid of images
 class Gallary extends React.Component {
   render() {
     const comics = this.props.comics
@@ -59,7 +57,9 @@ class Gallary extends React.Component {
       objectFit: 'cover'
     }
 
-    const comicCoverGallary = comics.map((comic) => (<GallaryImage comic={comic} style={comicCoverImg}/>))
+    const comicCoverGallary = comics.map((comic, i) => (
+      <GallaryImage comic={comic} imgStyle={comicCoverImg} gridColumn={i+1}/>
+    ))
 
     return (
       <div>
@@ -73,10 +73,17 @@ class Gallary extends React.Component {
 
 function GallaryImage(props) {
 
+  const gridItem = {
+    gridColumnStart: props.gridColumn,
+    gridColumnEnd: props.gridColumn,
+    gridRowStart: '1',
+    gridRowEnd: '1'
+  }
+
   return (
-    <figure>
+    <figure style={gridItem}>
       <h3>{props.comic.title}</h3>
-      <img src={props.comic.titleUrl} style={props.style}/>
+      <img src={props.comic.titleUrl} style={props.imgStyle}/>
       <p>{props.comic.description}</p>
     </figure>
   )
