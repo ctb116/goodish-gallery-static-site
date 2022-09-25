@@ -13,7 +13,7 @@ const listOfComics = [
   description: "this is a description 2",
   headerUrl: "this is a header URL 2",
   route: "this is a route 2",
-  title: "https://i.imgur.com/Wmp3yCM.jpeg",
+  title: "This is the title 2",
   titleUrl: "https://i.imgur.com/Wmp3yCM.jpeg"
 }
 ]
@@ -22,12 +22,39 @@ const listOfComics = [
 import React from "react";
 import "./style.css";
 
+const artWallDisplay = {
+  width: '50%'
+}
+
+const comicCoverGallary = {
+  display: 'grid',
+  // two columns, 1 row
+  gridTemplateColumns: 'repeat(2, 1fr)',
+  gridTemplateRows: 'repeat(1, 25vw)',
+  gridGap: '15px'
+}
+
+
+const comicCoverImg = {
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover'
+}
+
+const color = {
+  gridColumnStart: '1',
+  gridColumnEnd: '1',
+  gridRowStart: '1',
+  gridRowEnd: '1'
+}
 
 export default function App() {
   return (
     <div>
       <h1>Main Page</h1>
-      <ComicWall comics={listOfComics}/>
+      <div>
+        <ComicWall comics={listOfComics}/>
+      </div>
     </div>
   );
 }
@@ -37,10 +64,12 @@ export default function App() {
 class ComicWall extends React.Component {
   render() {
     const comics = this.props.comics
-    const mapTest = comics.map((comic) => (<Comic comic={comic}/>))
+    const mapTest = comics.map((comic) => (<Comic comic={comic} style={comicCoverImg} color={color}/>))
     return (
-      <div>
-       {mapTest}
+      <div style={artWallDisplay}>
+        <div style={comicCoverGallary}>
+         {mapTest}
+        </div>
       </div>
     );
   }
@@ -48,9 +77,10 @@ class ComicWall extends React.Component {
 
 function Comic(props) {
   return (
-    <div>
-      <p>test</p>
-      <img src={props.comic.titleUrl}/>
+    <div style={props.color}>
+      <h3>{props.comic.title}</h3>
+      <img src={props.comic.titleUrl} style={props.style}/>
+      <p>{props.comic.description}</p>
     </div>
   )
 }
