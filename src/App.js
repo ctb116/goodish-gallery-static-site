@@ -1,5 +1,5 @@
 // fake data
-const listOfComics = [
+const arrayOfComics = [
   {
   NO_ID_FIELD: "ID 1",
   description: "this is a description 1",
@@ -22,33 +22,17 @@ const listOfComics = [
 import React from "react";
 import "./style.css";
 
-const artWallDisplay = {
-  width: '50%'
-}
-
-const comicCoverGallary = {
-  display: 'grid',
-  // two columns, 1 row
-  gridTemplateColumns: 'repeat(2, 1fr)',
-  gridTemplateRows: 'repeat(1, 25vw)',
-  gridGap: '15px'
-}
-
-
-const comicCoverImg = {
-  width: '100%',
-  height: '100%',
-  objectFit: 'cover'
-}
-
-const gridOneByOne = '1';
-
 
 export default function App() {
+  
+  const artWallDisplay = {
+    width: '50%'
+  }
+
   return (
     <div>
       <h1>Main Page</h1>
-      <div>
+      <div style={artWallDisplay}>
         <Gallary comics={arrayOfComics}/>
       </div>
     </div>
@@ -60,10 +44,26 @@ export default function App() {
 class Gallary extends React.Component {
   render() {
     const comics = this.props.comics
-    const comicCoverGallary = comics.map((comic) => (<GallaryImage comic={comic} style={comicCoverImg} grid={gridOneByOne}/>))
+    
+    const comicCoverGallaryStyles = {
+      display: 'grid',
+      // two columns, 1 row
+      gridTemplateColumns: 'repeat(2, 1fr)',
+      gridTemplateRows: 'repeat(1, 25vw)',
+      gridGap: '15px'
+    }
+    
+    const comicCoverImg = {
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover'
+    }
+
+    const comicCoverGallary = comics.map((comic) => (<GallaryImage comic={comic} style={comicCoverImg}/>))
+
     return (
-      <div style={artWallDisplay}>
-        <div style={comicCoverGallary}>
+      <div>
+        <div style={comicCoverGallaryStyles}>
          {comicCoverGallary}
         </div>
       </div>
@@ -73,21 +73,12 @@ class Gallary extends React.Component {
 
 function GallaryImage(props) {
 
-const one = props.grid;
-
-  const gridItem = {
-    gridColumnStart: one,
-    gridColumnEnd: one,
-    gridRowStart: one,
-    gridRowEnd: one
-  }
-
   return (
-    <div style={gridItem}>
+    <figure>
       <h3>{props.comic.title}</h3>
       <img src={props.comic.titleUrl} style={props.style}/>
       <p>{props.comic.description}</p>
-    </div>
+    </figure>
   )
 }
 
