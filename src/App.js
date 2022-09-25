@@ -6,16 +6,16 @@ const listOfComics = [
   headerUrl: "this is a header URL 1 - the cropped image may not need this",
   route: "this is a route 1",
   title: "this is the title 1",
-  titleUrl: "https://i.imgur.com/Wmp3yCM.jpeg"
-  },
-  {
+  titleUrl: "https://i.imgur.com/0gZlG7Y.jpeg"
+},
+{
   NO_ID_FIELD: "ID 2",
   description: "this is a description 2",
   headerUrl: "this is a header URL 2",
   route: "this is a route 2",
   title: "https://i.imgur.com/Wmp3yCM.jpeg",
   titleUrl: "https://i.imgur.com/Wmp3yCM.jpeg"
-  }
+}
 ]
 
 //Static Site 
@@ -32,33 +32,30 @@ export default function App() {
   );
 }
 
-
 // really this just displays an image. How that image is displayed could change on the CSS
 // responsible for a grid of images
 class ComicWall extends React.Component {
   render() {
-    console.log(this.props)
+    const comics = this.props.comics
+    const mapTest = comics.map((comic) => (<Comic comic={comic}/>))
     return (
       <div>
-        <h2>This is a list of comics to pick from</h2>
-        {this.props.comics.forEach((comic) => {
-          <Comic/>
-        })
-        }
+       {mapTest}
       </div>
     );
   }
 }
 
-const Comic = (props) => {
-  console.log(props)
+function Comic(props) {
   return (
     <div>
-      hi
-
+      <p>test</p>
+      <img src={props.comic.titleUrl}/>
     </div>
   )
 }
+
+
 
 // this.props.products.forEach((product) => {
 //   }
