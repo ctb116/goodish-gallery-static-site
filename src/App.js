@@ -41,19 +41,15 @@ const comicCoverImg = {
   objectFit: 'cover'
 }
 
-const color = {
-  gridColumnStart: '1',
-  gridColumnEnd: '1',
-  gridRowStart: '1',
-  gridRowEnd: '1'
-}
+const gridOneByOne = '1';
+
 
 export default function App() {
   return (
     <div>
       <h1>Main Page</h1>
       <div>
-        <ComicWall comics={listOfComics}/>
+        <Gallary comics={arrayOfComics}/>
       </div>
     </div>
   );
@@ -61,23 +57,33 @@ export default function App() {
 
 // really this just displays an image. How that image is displayed could change on the CSS
 // responsible for a grid of images
-class ComicWall extends React.Component {
+class Gallary extends React.Component {
   render() {
     const comics = this.props.comics
-    const mapTest = comics.map((comic) => (<Comic comic={comic} style={comicCoverImg} color={color}/>))
+    const comicCoverGallary = comics.map((comic) => (<GallaryImage comic={comic} style={comicCoverImg} grid={gridOneByOne}/>))
     return (
       <div style={artWallDisplay}>
         <div style={comicCoverGallary}>
-         {mapTest}
+         {comicCoverGallary}
         </div>
       </div>
     );
   }
 }
 
-function Comic(props) {
+function GallaryImage(props) {
+
+const one = props.grid;
+
+  const gridItem = {
+    gridColumnStart: one,
+    gridColumnEnd: one,
+    gridRowStart: one,
+    gridRowEnd: one
+  }
+
   return (
-    <div style={props.color}>
+    <div style={gridItem}>
       <h3>{props.comic.title}</h3>
       <img src={props.comic.titleUrl} style={props.style}/>
       <p>{props.comic.description}</p>
