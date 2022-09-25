@@ -33,63 +33,70 @@ export default function App() {
     <div>
       <h1>Main Page</h1>
       <div style={artWallDisplay}>
-        <Gallary comics={arrayOfComics}/>
+        <Gallery comics={arrayOfComics}/>
       </div>
     </div>
   );
 }
 
-class Gallary extends React.Component {
+class Gallery extends React.Component {
   render() {
     const comics = this.props.comics
     
-    const comicCoverGallaryStyles = {
+    const comicCoverGalleryStyles = {
       display: 'grid',
       // two columns, 1 row
-      gridTemplateColumns: 'repeat(2, 1fr)',
-      gridTemplateRows: 'repeat(1, 25vw)',
-      gridGap: '15px'
+      gridTemplateColumns: 'repeat(2, auto [col-start])',
+      gridTemplateRows: 'repeat(1, auto [row-start])',
     }
     
     const comicCoverImg = {
+      display: 'block',
       width: '100%',
       height: '100%',
-      objectFit: 'cover'
+      maxWidth: '350px',
+      maxHeight: '400px',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      objectFit: 'scale-down',
     }
 
-    const comicCoverGallary = comics.map((comic, i) => (
-      <GallaryImage comic={comic} imgStyle={comicCoverImg} gridColumn={i+1}/>
-    ))
+    const test = {
+      backgroundColor: 'green',
+      margin: 'auto',
+      padding: '5px',
+      outlineStyle: 'double',
+      outlineWidth: 'medium',
+      outlineColor: 'white'
+    }
 
+    const comicCoverGallery = comics.map((comic) => (
+      <figure style={test}>
+        <GalleryTitle title={comic.title}/>
+        <GalleryImage titleUrl={comic.titleUrl} imgStyle={comicCoverImg}/>
+        <GalleryDescription description={comic.description}/>
+      </figure>
+    ))
+    
     return (
       <div>
-        <div style={comicCoverGallaryStyles}>
-         {comicCoverGallary}
+        <h2>Comics</h2>
+        <div style={comicCoverGalleryStyles} className={"grid"}>
+         {comicCoverGallery}
         </div>
       </div>
     );
   }
 }
 
-function GallaryImage(props) {
-
-  const gridItem = {
-    gridColumnStart: props.gridColumn,
-    gridColumnEnd: props.gridColumn,
-    gridRowStart: '1',
-    gridRowEnd: '1'
-  }
-
-  return (
-    <figure style={gridItem}>
-      <h3>{props.comic.title}</h3>
-      <img src={props.comic.titleUrl} style={props.imgStyle}/>
-      <p>{props.comic.description}</p>
-    </figure>
-  )
+function GalleryTitle(props) {
+  return <h3>{props.title}</h3>
 }
 
+function GalleryImage(props) {
+  return <img src={props.titleUrl} style={props.imgStyle}/>
+}
 
-
-// this.props.products.forEach((product) => {
-//   }
+function GalleryDescription(props) {
+  return <p>{props.description}</p>
+}
