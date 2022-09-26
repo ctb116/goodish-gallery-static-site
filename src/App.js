@@ -48,6 +48,12 @@ const arrayOfPages = [
     description: "The description of this page",
     page: 5,
     pageUrl: "https://i.imgur.com/qfkduUJ.jpeg"
+  },
+  {
+    name: "the name for this page",
+    description: "The description of this page",
+    page: 6,
+    pageUrl: "https://i.imgur.com/yTvPglU.jpeg"
   }
 ]
 
@@ -99,30 +105,40 @@ class GalleryControl extends React.Component {
       maxHeight: '400px',
       marginLeft: 'auto',
       marginRight: 'auto',
-      objectFit: 'cover',
+      objectFit: 'fill',
     }
 
+    const comicPageImg = {
+      maxWidth: '100%',
+      maxHeight: '100%'
+    }
+
+      //the figure that contains the image
     const test = {
+      width: '100%',
+      height: '100%',
       backgroundColor: 'green',
       margin: '5px',
       padding: '5px',
       outlineStyle: 'double',
       outlineWidth: 'medium',
-      outlineColor: 'white'
+      outlineColor: 'white',
     }
 
     const comicCoverGallery = comics.map((comic) => (
       <figure style={test}>
         <GalleryTitle title={comic.title}/>
-        <GalleryImage url={comic.titleUrl} imgStyle={comicCoverImg}/>
+        <GalleryImage url={comic.titleUrl}/>
         <GalleryDescription description={comic.description}/>
       </figure>
     ))
 
     const comicPageGallery = pages.map((page) =>(
-      <figure style={test}>
-        <GalleryImage url={page.pageUrl} imgStyle={comicCoverImg}/>
-      </figure>
+      <table style={test}>
+        <GalleryTitle title={page.name}/>
+        <GalleryImage url={page.pageUrl}/>
+        <GalleryDescription description={page.description}/>
+      </table>
     ))
     
     return (
@@ -137,13 +153,38 @@ class GalleryControl extends React.Component {
 }
 
 function GalleryTitle(props) {
-  return <h3>{props.title}</h3>
+  return (
+  <tr>
+    <h3>{props.title}</h3>
+  </tr>
+  )
 }
 
 function GalleryImage(props) {
-  return <img src={props.url} style={props.imgStyle}/>
+
+  const containImg = {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover'
+  }
+
+  const frameImg = {
+    width: '100%',
+    height: '100%',
+  }
+
+  return (
+    <tr style={frameImg}>
+      <img src={props.url} style={containImg}/>
+    </tr>
+  )
 }
 
 function GalleryDescription(props) {
-  return <p>{props.description}</p>
+
+  return (
+    <tr>
+      <p>{props.description}</p>
+    </tr>
+  )
 }
