@@ -143,9 +143,8 @@ class GalleryControl extends React.Component {
       <table style={test}>
         <GalleryTitle title={page.name}/>
         <GalleryImage url={page.pageUrl}/>
-        <GalleryDescription description={page.description}>
-          <PageCount chpStart={page.chpStart} chpEnd={page.chpEnd}/>
-        </GalleryDescription>
+        <GalleryDescription description={page.description}/>
+        <PageCount chpStart={page.chpStart} chpEnd={page.chpEnd}/>
       </table>
     ))
     
@@ -193,22 +192,33 @@ function GalleryImage(props) {
 }
 
 function GalleryDescription(props) {
-console.log(props)
   return (
     <tr>
       <p>{props.description}</p>
-      <p>{PageCount(props)}</p>
     </tr>
   )
 }
 
 function PageCount(props) {
-  console.log(props)
 
+  let pageList = [];
+  for (let p = props.chpStart; p <= props.chpEnd; p++) {
+    pageList.push(<td style={{textAlign: 'center'}}>{p}</td>)
+  };
 
+  const firstSix = <tr>{pageList.splice(0, 6)}</tr>
+  const secondSix = <tr>{pageList.splice(0, 6)}</tr>
+  const thirdSix = <tr>{pageList.splice(0, 6)}</tr>
+  const forthSix = <tr>{pageList.splice(0, 6)}</tr>
 
-  for (let i = props.chpStart; i < props.chpEnd; i++) {
-
-  } 
-  return <p>hi</p>
+  return (
+    <tr>
+      <table style={{margin: 'auto'}}>
+          {firstSix}
+          {secondSix}
+          {thirdSix}
+          {forthSix}
+      </table>
+    </tr>
+  )
 }
