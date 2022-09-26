@@ -18,41 +18,47 @@ const arrayOfComics = [
   }
 ]
 
-const arrayOfPages = [
+const arrayOfChapters = [
   {
-    name: "the name for this page",
-    description: "The description of this page",
-    page: 1,
+    name: "chapter 1",
+    description: "The description of this chapter",
+    chpStart: 1,
+    chpEnd: 18,
     pageUrl: "https://i.imgur.com/PdiIXBe.png"
   },
   {
-    name: "the name for this page",
-    description: "The description of this page",
-    page: 2,
+    name: "chapter 2",
+    description: "The description of this chapter",
+    chpStart: 1,
+    chpEnd: 18,
     pageUrl: "https://i.imgur.com/eC2H1ix.png"
   },
   {
-    name: "the name for this page",
-    description: "The description of this page",
-    page: 3,
+    name: "chapter 3",
+    description: "The description of this chapter",
+    chpStart: 1,
+    chpEnd: 18,
     pageUrl: "https://i.imgur.com/RbkSaII.jpeg"
   },
   {
-    name: "the name for this page",
-    description: "The description of this page",
-    page: 4,
+    name: "chapter 4",
+    description: "The description of this chapter",
+    chpStart: 1,
+    chpEnd: 18,
     pageUrl: "https://i.imgur.com/yTvPglU.jpeg"
   },
   {
-    name: "the name for this page",
-    description: "The description of this page",
-    page: 5,
+    name: "chapter 5",
+    description: "The description of this chapter",
+    chpStart: 1,
+    chpEnd: 18,
     pageUrl: "https://i.imgur.com/qfkduUJ.jpeg"
   },
   {
-    name: "the name for this page",
-    description: "The description of this page",
-    page: 6,
+    name: "chapter 6",
+    description: "The description of this chapter",
+    chpStart: 1,
+    chpEnd: 18,
     pageUrl: "https://i.imgur.com/yTvPglU.jpeg"
   }
 ]
@@ -72,7 +78,7 @@ export default function App() {
     <div>
       <h1>Main Page</h1>
       <div style={artWallDisplay}>
-        <GalleryControl comics={arrayOfComics} pages={arrayOfPages}/>
+        <GalleryControl comics={arrayOfComics} pages={arrayOfChapters}/>
       </div>
     </div>
   );
@@ -137,7 +143,9 @@ class GalleryControl extends React.Component {
       <table style={test}>
         <GalleryTitle title={page.name}/>
         <GalleryImage url={page.pageUrl}/>
-        <GalleryDescription description={page.description}/>
+        <GalleryDescription description={page.description}>
+          <PageCount chpStart={page.chpStart} chpEnd={page.chpEnd}/>
+        </GalleryDescription>
       </table>
     ))
     
@@ -153,10 +161,14 @@ class GalleryControl extends React.Component {
 }
 
 function GalleryTitle(props) {
+
+  const frameImg = {
+    margin: '0px',
+  }
+
+
   return (
-  <tr>
-    <h3>{props.title}</h3>
-  </tr>
+    <h3 style={frameImg}>{props.title}</h3>
   )
 }
 
@@ -181,10 +193,22 @@ function GalleryImage(props) {
 }
 
 function GalleryDescription(props) {
-
+console.log(props)
   return (
     <tr>
       <p>{props.description}</p>
+      <p>{PageCount(props)}</p>
     </tr>
   )
+}
+
+function PageCount(props) {
+  console.log(props)
+
+
+
+  for (let i = props.chpStart; i < props.chpEnd; i++) {
+
+  } 
+  return <p>hi</p>
 }
