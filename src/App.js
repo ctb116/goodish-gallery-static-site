@@ -1,4 +1,6 @@
 // fake data
+// each of arrayOfComics a document in AllComics collection
+// each document has two subcollections described below
 const arrayOfComics = [
   {
   NO_ID_FIELD: "ID 1",
@@ -18,6 +20,8 @@ const arrayOfComics = [
   }
 ]
 
+// subcollection of each document in arrayOfComics
+// describes all chapters in comic
 const arrayOfChapters = [
   {
     name: "chapter 1",
@@ -63,6 +67,47 @@ const arrayOfChapters = [
   }
 ]
 
+// a subcollection of each document in arrayOfComics
+// describes all pages in comic
+const arrayOfPages = [
+  {
+    name: "Title for this page",
+    description: "The description of this page",
+    page: 1,
+    pageUrl: "https://i.imgur.com/KIxANBW.jpeg"
+  },
+  {
+    name: "Title for this page",
+    description: "The description of this page",
+    page: 2,
+    pageUrl: "https://i.imgur.com/nzhhPnE.png"
+  },
+  {
+    name: "Title for this page",
+    description: "The description of this page",
+    page: 3,
+    pageUrl: "https://i.imgur.com/eRq5JuC.jpeg"
+  },
+  {
+    name: "Title for this page",
+    description: "The description of this page",
+    page: 4,
+    pageUrl: "https://i.imgur.com/GckIlvo.jpeg"
+  },
+  {
+    name: "Title for this page",
+    description: "The description of this page",
+    page: 5,
+    pageUrl: "https://i.imgur.com/NsGw9MA.png"
+  },
+  {
+    name: "Title for this page",
+    description: "The description of this page",
+    page: 6,
+    pageUrl: "https://i.imgur.com/5yV4igC.jpeg"
+  }
+]
+
 //Static Site 
 import React from "react";
 import "./style.css";
@@ -71,14 +116,15 @@ import "./style.css";
 export default function App() {
 
   const artWallDisplay = {
-    width: '50%'
+    width: '75%',
+    margin: '2%'
   }
 
   return (
     <div>
-      <h1>Main Page</h1>
       <div style={artWallDisplay}>
-        <GalleryControl comics={arrayOfComics} pages={arrayOfChapters}/>
+        <h1>Main Page</h1>
+        <GalleryControl comics={arrayOfComics} chapters={arrayOfChapters} pages={arrayOfPages}/>
       </div>
     </div>
   );
@@ -87,6 +133,7 @@ export default function App() {
 class GalleryControl extends React.Component {
   render() {
     const comics = this.props.comics
+    const chapters = this.props.chapters
     const pages = this.props.pages
     
     const comicCoverGalleryStyles = {
@@ -94,35 +141,10 @@ class GalleryControl extends React.Component {
       // two columns, 1 row
       gridTemplateColumns: 'repeat(2, auto [col-start])',
       gridTemplateRows: 'repeat(1, auto [row-start])',
-    }
-    //these two swap
-    const comicPageGalleryStyles = {
-      display: 'grid',
-      // two columns, 1 row
-      gridTemplateColumns: 'repeat(4, auto [col-start])',
-      gridTemplateRows: 'repeat(2, auto [row-start])',
-    }
-    
-    const comicCoverImg = {
-      display: 'block',
-      width: '100%',
-      height: '100%',
-      maxWidth: '350px',
-      maxHeight: '400px',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      objectFit: 'fill',
+      width: '75%'
     }
 
-    const comicPageImg = {
-      maxWidth: '100%',
-      maxHeight: '100%'
-    }
-
-      //the figure that contains the image
-    const test = {
-      width: '100%',
-      height: '100%',
+    const comicCoverStyle = {
       backgroundColor: 'green',
       margin: '5px',
       padding: '5px',
@@ -131,21 +153,66 @@ class GalleryControl extends React.Component {
       outlineColor: 'white',
     }
 
+    const comicChpGalleryStyles = {
+      display: 'grid',
+      // four columns, 2 row
+      gridTemplateColumns: 'repeat(4, auto [col-start])',
+      gridTemplateRows: 'repeat(2, auto [row-start])',
+      // width: 1 = this prevents each grid item expanding to fill grid space
+      width: '75%'
+    }
+
+    const comicChpStyle = {
+      width: '100%',
+      backgroundColor: 'green',
+      height: '100%',
+      margin: '15px',
+      padding: '5px',
+      outlineStyle: 'double',
+      outlineWidth: 'medium',
+      outlineColor: 'white',
+    }
+
+    const comicPageGalleryStyles = {
+      display: 'grid',
+      // 1 columns, 1 row
+      gridTemplateColumns: 'repeat(1, auto [col-start])',
+      gridTemplateRows: 'repeat(1, auto [row-start])',
+    }
+
+    const comicPageStyle = {
+      width: '100%',
+      backgroundColor: 'green',
+      height: '100%',
+      margin: '5px',
+      padding: '5px',
+      outlineStyle: 'double',
+      outlineWidth: 'medium',
+      outlineColor: 'white',
+    }
+    
     const comicCoverGallery = comics.map((comic) => (
-      <figure style={test}>
+      <table style={comicCoverStyle}>
         <GalleryTitle title={comic.title}/>
         <GalleryImage url={comic.titleUrl}/>
         <GalleryDescription description={comic.description}/>
-      </figure>
+      </table>
     ))
 
-    const comicPageGallery = pages.map((page) =>(
-      <table style={test}>
-        <GalleryTitle title={page.name}/>
-        <GalleryImage url={page.pageUrl}/>
-        <GalleryDescription description={page.description}/>
-        <PageCount chpStart={page.chpStart} chpEnd={page.chpEnd}/>
+    const comicChpGallery = chapters.map((chapter) =>(
+      <table style={comicChpStyle}>
+        <GalleryTitle title={chapter.name}/>
+        <GalleryImage url={chapter.pageUrl}/>
+        <GalleryDescription description={chapter.description}/>
+        <PageCount chpStart={chapter.chpStart} chpEnd={chapter.chpEnd}/>
       </table>
+    ))
+
+    const comicPageGallery = pages.map((page) => (
+      <table style={comicPageStyle}>
+        <GalleryImage url={page.pageUrl}/>
+      </table>
+
     ))
     
     return (
