@@ -115,17 +115,10 @@ import "./style.css";
 
 export default function App() {
 
-  const artWallDisplay = {
-    width: '75%',
-    margin: '2%'
-  }
-
   return (
     <div>
-      <div style={artWallDisplay}>
-        <h1>Main Page</h1>
-        <GalleryControl comics={arrayOfComics} chapters={arrayOfChapters} pages={arrayOfPages}/>
-      </div>
+      <h1>Main Page</h1>
+      <GalleryControl comics={arrayOfComics} chapters={arrayOfChapters} pages={arrayOfPages}/>
     </div>
   );
 }
@@ -218,8 +211,24 @@ class GalleryControl extends React.Component {
     return (
       <div>
         <h2>Comics</h2>
-        <div style={comicPageGalleryStyles} className={"grid"}>
-         {comicPageGallery}
+        <h3>Title</h3>
+        <div className={"flexContainer"}>
+          <div className={"flexItem-a"}>
+            <div style={comicPageGalleryStyles} className={"grid"}>
+            {comicPageGallery}
+            </div>
+          </div>
+          <div className={"flexItem-b"}>
+            <div>
+              <NewsLetterSignUp/>
+            </div>
+            <div>
+              <SocialMedia/>
+            </div>
+            <div>
+              <TipJar/>
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -287,5 +296,34 @@ function PageCount(props) {
           {forthSix}
       </table>
     </tr>
+  )
+}
+
+function NewsLetterSignUp() {
+  return (
+    <div style ={{backgroundColor: 'green'}}>
+      <p>Sign up to get notified of the next chapter</p>
+      <button>Sign Up</button>
+    </div>
+  )
+}
+
+function SocialMedia() {
+  return (
+    <div style={{backgroundColor: 'green'}}>
+      <p>Find me on social media</p>
+      <p>Link</p>
+      <p>Link</p>
+      <p>Link</p>
+      <p>Link</p>
+    </div>
+  )
+}
+
+function TipJar() {
+  return (
+    <div style={{backgroundColor: 'green'}}>
+      <p>Give me a tip</p>
+    </div>
   )
 }
