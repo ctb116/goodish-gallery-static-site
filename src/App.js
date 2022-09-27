@@ -98,7 +98,7 @@ const arrayOfPages = [
     name: "Title for this page",
     description: "The description of this page",
     page: 5,
-    pageUrl: "https://i.imgur.com/NsGw9MA.png"
+    pageUrl: "https://i.imgur.com/eRq5JuC.jpeg"
   },
   {
     name: "Title for this page",
@@ -134,7 +134,6 @@ class GalleryControl extends React.Component {
       // two columns, 1 row
       gridTemplateColumns: 'repeat(2, auto [col-start])',
       gridTemplateRows: 'repeat(1, auto [row-start])',
-      width: '75%'
     }
 
     const comicCoverStyle = {
@@ -152,7 +151,6 @@ class GalleryControl extends React.Component {
       gridTemplateColumns: 'repeat(4, auto [col-start])',
       gridTemplateRows: 'repeat(2, auto [row-start])',
       // width: 1 = this prevents each grid item expanding to fill grid space
-      width: '75%'
     }
 
     const comicChpStyle = {
@@ -214,8 +212,8 @@ class GalleryControl extends React.Component {
         <h3>Title</h3>
         <div className={"flexContainer"}>
           <div className={"flexItem-a"}>
-            <div style={comicPageGalleryStyles} className={"grid"}>
-            {comicPageGallery}
+            <div style={comicChpGalleryStyles} className={"grid"}>
+            {comicChpGallery}
             </div>
           </div>
           <div className={"flexItem-b"}>
