@@ -141,31 +141,22 @@ class GalleryControl extends React.Component {
       // four columns, 2 row
       gridTemplateColumns: 'repeat(4, auto [col-start])',
       gridTemplateRows: 'repeat(1, auto [row-start])',
-      // haha
-      overflow: 'scroll'
+      // keeps the chapter cards closer together by making the grid smaller and centers the grid in the flexbox
+      width: '50%',
+      margin: 'auto'
     }
 
-    const comicChpStyle = {
-      width: '100%',
-      height: '100%',
-      margin: '15px',
-      padding: '5px',
-      backgroundColor: 'green',
-      outlineStyle: 'double',
-      outlineWidth: 'medium',
-      outlineColor: 'white',
-    }
-
-
+    
+    
     const comicPageGalleryStyles = {
       display: 'grid',
       // 1 columns, 1 row
       gridTemplateColumns: 'repeat(1, auto [col-start])',
       gridTemplateRows: 'repeat(1, auto [row-start])',
     }
-
-
-
+    
+    
+    
     const comicCoverStyle = {
       margin: '5px',
       padding: '5px',
@@ -174,10 +165,10 @@ class GalleryControl extends React.Component {
       outlineWidth: 'medium',
       outlineColor: 'white',
     }
-
-
-
-
+    
+    
+    
+    
     const comicPageStyle = {
       width: '100%',
       height: '100%',
@@ -190,31 +181,31 @@ class GalleryControl extends React.Component {
     }
     
     const comicCoverGallery = comics.map((comic) => (
-      <table style={comicCoverStyle}>
+      <figure style={comicCoverStyle}>
         <GalleryTitle title={comic.title}/>
         <GalleryImage url={comic.titleUrl}/>
         <GalleryDescription description={comic.description}/>
-      </table>
+      </figure>
     ))
-
+    
     const comicChpGallery = chapters.map((chapter) =>(
-      <table style={comicChpStyle}>
+      <figure style={comicChpStyle}>
         <GalleryTitle title={chapter.name}/>
         <GalleryImage url={chapter.pageUrl}/>
         <GalleryDescription description={chapter.description}/>
         <PageCount chpStart={chapter.chpStart} chpEnd={chapter.chpEnd}/>
-      </table>
-    ))
-
-    const comicPageGallery = pages.map((page) => (
-      <table style={comicPageStyle}>
-        <GalleryImage url={page.pageUrl}/>
-      </table>
-
+      </figure>
     ))
     
-    return (
-      <div>
+    const comicPageGallery = pages.map((page) => (
+      <figure style={comicPageStyle}>
+        <GalleryImage url={page.pageUrl}/>
+      </figure>
+
+))
+
+return (
+  <div>
         <h2>Comics</h2>
         <h3>Title</h3>
         <div className={"flexContainer"}>
@@ -241,50 +232,54 @@ class GalleryControl extends React.Component {
 }
 
 function GalleryTitle(props) {
-
-  const frameImg = {
-    margin: '0px',
-  }
-
-
   return (
-    <h3 style={frameImg}>{props.title}</h3>
-  )
-}
-
-function GalleryImage(props) {
-
-  const containImg = {
+    <h4 style={{margin: '2px'}}>{props.title}</h4>
+    )
+  }
+  
+  const comicChpStyle = {
     width: '100%',
     height: '100%',
-    objectFit: 'cover'
+    maxWidth: '125px',
+    maxHeight: '325px',
+    margin: '10px',
+    padding: '5px',
+    backgroundColor: 'green',
+    outlineStyle: 'double',
+    outlineWidth: 'medium',
+    outlineColor: 'white',
   }
 
-  const frameImg = {
-    width: '100%',
-    height: '100%',
-  }
+  function GalleryImage(props) {
+    
+    const containImg = {
+      width: '100%',
+      height: '150px',
+      objectFit: 'none',
+    }
 
-  return (
-    <tr style={frameImg}>
+    return (
+    <div>
       <img src={props.url} style={containImg}/>
-    </tr>
+    </div>
   )
 }
 
 function GalleryDescription(props) {
   return (
-    <tr>
       <p>{props.description}</p>
-    </tr>
   )
 }
 
 function PageCount(props) {
 
+  const numberStyle = {
+    textAlign: 'center',
+  }
+
   let pageList = [];
   for (let p = props.chpStart; p <= props.chpEnd; p++) {
-    pageList.push(<td style={{textAlign: 'center'}}>{p}</td>)
+    pageList.push(<td style={numberStyle}>{p}</td>)
   };
 
   const firstSix = <tr>{pageList.splice(0, 6)}</tr>
@@ -293,14 +288,12 @@ function PageCount(props) {
   const forthSix = <tr>{pageList.splice(0, 6)}</tr>
 
   return (
-    <tr>
-      <table style={{margin: 'auto'}}>
+      <table style={{marginBottom: '15px'}}>
           {firstSix}
           {secondSix}
           {thirdSix}
           {forthSix}
       </table>
-    </tr>
   )
 }
 
