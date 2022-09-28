@@ -13,31 +13,37 @@ body {
   background-color: blue
 }
 
-
-.flexContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  padding: 0;
-  margin: 0;
-  list-style: none;
+@media only screen and (max-width: 1000px) {
+  body {
+    background-color: lightblue
+  }
 }
+@media only screen and (min-width: 1000px) {
+  .flexContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
 
-/* width of these items determines space used on page */
-.flexItem-a {
-  background: tomato;
-  padding: 5px;
-  margin: 5px;
-  width: 75%;
-  margin-top: 10px;
-}
+  /* width of these items determines space used on page */
+  .flexItem-a {
+    background: tomato;
+    padding: 5px;
+    margin: 5px;
+    width: 75%;
+    margin-top: 10px;
+  }
 
-.flexItem-b {
-  background: tomato;
-  padding: 5px;
-  margin: 5px;
-  width: 25%;
-  height: 150px;
-  margin-top: 10px;
+  .flexItem-b {
+    background: tomato;
+    padding: 5px;
+    margin: 5px;
+    width: 25%;
+    height: 150px;
+    margin-top: 10px;
+  }
 }
 
