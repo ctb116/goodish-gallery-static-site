@@ -6,12 +6,13 @@ p {
 
 body {
   background-color: #1C1E24;
-  color: #F3FFBD
+  color: #F3FFBD;
 }
 
 .grid {
   background-color: blue
 }
+
 
 .flexContainer {
   display: flex;
@@ -39,3 +40,4 @@ body {
   height: 150px;
   margin-top: 10px;
 }
+

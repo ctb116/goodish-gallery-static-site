@@ -136,33 +136,26 @@ class GalleryControl extends React.Component {
       gridTemplateRows: 'repeat(1, auto [row-start])',
     }
 
-    const comicCoverStyle = {
-      backgroundColor: 'green',
-      margin: '5px',
-      padding: '5px',
-      outlineStyle: 'double',
-      outlineWidth: 'medium',
-      outlineColor: 'white',
-    }
-
     const comicChpGalleryStyles = {
       display: 'grid',
       // four columns, 2 row
       gridTemplateColumns: 'repeat(4, auto [col-start])',
-      gridTemplateRows: 'repeat(2, auto [row-start])',
-      // width: 1 = this prevents each grid item expanding to fill grid space
+      gridTemplateRows: 'repeat(1, auto [row-start])',
+      // haha
+      overflow: 'scroll'
     }
 
     const comicChpStyle = {
       width: '100%',
-      backgroundColor: 'green',
       height: '100%',
       margin: '15px',
       padding: '5px',
+      backgroundColor: 'green',
       outlineStyle: 'double',
       outlineWidth: 'medium',
       outlineColor: 'white',
     }
+
 
     const comicPageGalleryStyles = {
       display: 'grid',
@@ -171,12 +164,26 @@ class GalleryControl extends React.Component {
       gridTemplateRows: 'repeat(1, auto [row-start])',
     }
 
+
+
+    const comicCoverStyle = {
+      margin: '5px',
+      padding: '5px',
+      backgroundColor: 'green',
+      outlineStyle: 'double',
+      outlineWidth: 'medium',
+      outlineColor: 'white',
+    }
+
+
+
+
     const comicPageStyle = {
       width: '100%',
-      backgroundColor: 'green',
       height: '100%',
       margin: '5px',
       padding: '5px',
+      backgroundColor: 'green',
       outlineStyle: 'double',
       outlineWidth: 'medium',
       outlineColor: 'white',
