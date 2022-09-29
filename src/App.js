@@ -181,7 +181,7 @@ class GalleryControl extends React.Component {
     }
     
     const comicCoverGallery = comics.map((comic) => (
-      <figure style={comicCoverStyle} onClick={() => this.handleClick('chapter')}>
+      <figure style={comicCoverStyle} onClick={() => this.handleClick('chapter')} className={'click'}>
         <GalleryTitle title={comic.title}/>
         <GalleryImage url={comic.titleUrl} imgHeight={'400px'} objectFit={'scale-down'}/>
         <GalleryDescription description={comic.description}/>
@@ -189,7 +189,7 @@ class GalleryControl extends React.Component {
     ))
     
     const comicChpGallery = chapters.map((chapter) =>(
-      <figure style={comicChpStyle} onClick={() => this.handleClick('page')}>
+      <figure style={comicChpStyle} onClick={() => this.handleClick('page')} className={'click'}>
         <GalleryTitle title={chapter.name}/>
         <GalleryImage url={chapter.pageUrl} imgHeight={'150px'} objectFit={'none'}/>
         <GalleryDescription description={chapter.description}/>

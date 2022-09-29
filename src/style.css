@@ -57,7 +57,7 @@ body {
   }
 }
 
-figure:hover {
+.click:hover {
   background-color: orange;
 }
 
