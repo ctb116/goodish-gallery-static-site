@@ -13,12 +13,14 @@ body {
   background-color: blue
 }
 
-@media only screen and (max-width: 1000px) {
+/* removes the flexbox */
+@media only screen and (max-width: 600px) {
   body {
     background-color: lightblue
   }
 }
-@media only screen and (min-width: 1000px) {
+
+@media only screen and (min-width: 600px) {
   .flexContainer {
     display: flex;
     flex-direction: row;

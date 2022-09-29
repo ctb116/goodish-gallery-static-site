@@ -128,27 +128,15 @@ class GalleryControl extends React.Component {
     const comics = this.props.comics
     const chapters = this.props.chapters
     const pages = this.props.pages
-    
-    const comicCoverGalleryStyles = {
-      display: 'grid',
-      // two columns, 1 row
-      gridTemplateColumns: 'repeat(2, auto [col-start])',
-      gridTemplateRows: 'repeat(1, auto [row-start])',
+
+    const galleryStyles = {
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'center'
     }
 
-    const comicChpGalleryStyles = {
-      display: 'grid',
-      // four columns, 2 row
-      gridTemplateColumns: 'repeat(4, auto [col-start])',
-      gridTemplateRows: 'repeat(1, auto [row-start])',
-      // keeps the chapter cards closer together by making the grid smaller and centers the grid in the flexbox
-      width: '50%',
-      margin: 'auto'
-    }
-
-    
-    
-    const comicPageGalleryStyles = {
+    const pageGalleryStyles = {
       display: 'grid',
       // 1 columns, 1 row
       gridTemplateColumns: 'repeat(1, auto [col-start])',
@@ -158,7 +146,7 @@ class GalleryControl extends React.Component {
     
     
     const comicCoverStyle = {
-      margin: '5px',
+      margin: '15px',
       padding: '5px',
       backgroundColor: 'green',
       outlineStyle: 'double',
@@ -183,7 +171,7 @@ class GalleryControl extends React.Component {
     const comicCoverGallery = comics.map((comic) => (
       <figure style={comicCoverStyle}>
         <GalleryTitle title={comic.title}/>
-        <GalleryImage url={comic.titleUrl}/>
+        <GalleryImage url={comic.titleUrl} imgHeight={'400px'}/>
         <GalleryDescription description={comic.description}/>
       </figure>
     ))
@@ -191,7 +179,7 @@ class GalleryControl extends React.Component {
     const comicChpGallery = chapters.map((chapter) =>(
       <figure style={comicChpStyle}>
         <GalleryTitle title={chapter.name}/>
-        <GalleryImage url={chapter.pageUrl}/>
+        <GalleryImage url={chapter.pageUrl} imgHeight={'150px'}/>
         <GalleryDescription description={chapter.description}/>
         <PageCount chpStart={chapter.chpStart} chpEnd={chapter.chpEnd}/>
       </figure>
@@ -210,8 +198,8 @@ return (
         <h3>Title</h3>
         <div className={"flexContainer"}>
           <div className={"flexItem-a"}>
-            <div style={comicChpGalleryStyles} className={"grid"}>
-            {comicChpGallery}
+            <div style={galleryStyles} className={"grid"}>
+            {comicCoverGallery}
             </div>
           </div>
           <div className={"flexItem-b"}>
@@ -254,7 +242,7 @@ function GalleryTitle(props) {
     
     const containImg = {
       width: '100%',
-      height: '150px',
+      height: props.imgHeight,
       objectFit: 'none',
     }
 
