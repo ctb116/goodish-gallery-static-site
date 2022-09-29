@@ -123,6 +123,13 @@ export default function App() {
 }
 
 class GalleryControl extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      galleryVisible: false
+    };
+  }
+
   render() {
     const comics = this.props.comics
     const chapters = this.props.chapters
@@ -192,6 +199,14 @@ class GalleryControl extends React.Component {
 
     ))
 
+    let currentlyVisibleState = null;
+    if (this.state.galleryVisible == 'cover') {
+      currentlyVisibleState = comicCoverGallery
+    } else {
+      currentlyVisibleState = <h2>something went wrong</h2>
+    }
+
+    console.log(this.state)
 return (
   <div>
         <h2>Comics</h2>
@@ -199,7 +214,7 @@ return (
         <div className={"flexContainer"}>
           <div className={"flexItem-a"}>
             <div style={galleryStyles} className={"grid"}>
-            {comicCoverGallery}
+            {currentlyVisibleState}
             </div>
           </div>
           <div className={"flexItem-b"}>
