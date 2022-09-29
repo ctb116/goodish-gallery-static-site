@@ -130,10 +130,9 @@ class GalleryControl extends React.Component {
     };
   }
 
-  handleClick = () => {
-    this.setState(prevState => ({
-      galleryVisible: !prevState.formVisibleOnPage
-    }));
+  handleClick = (visible) => {
+    console.log(visible)
+    this.setState({galleryVisible: visible});
   }
 
   render() {
@@ -182,7 +181,7 @@ class GalleryControl extends React.Component {
     }
     
     const comicCoverGallery = comics.map((comic) => (
-      <figure style={comicCoverStyle} onClick={this.handleOnClick}>
+      <figure style={comicCoverStyle} onClick={() => this.handleClick('chapter')}>
         <GalleryTitle title={comic.title}/>
         <GalleryImage url={comic.titleUrl} imgHeight={'400px'} objectFit={'scale-down'}/>
         <GalleryDescription description={comic.description}/>
@@ -190,7 +189,7 @@ class GalleryControl extends React.Component {
     ))
     
     const comicChpGallery = chapters.map((chapter) =>(
-      <figure style={comicChpStyle} onClick={this.handleOnClick}>
+      <figure style={comicChpStyle} onClick={() => this.handleClick('page')}>
         <GalleryTitle title={chapter.name}/>
         <GalleryImage url={chapter.pageUrl} imgHeight={'150px'} objectFit={'none'}/>
         <GalleryDescription description={chapter.description}/>
@@ -210,6 +209,8 @@ class GalleryControl extends React.Component {
       currentlyVisibleState = comicCoverGallery
     } else if (this.state.galleryVisible == 'chapter') {
       currentlyVisibleState = comicChpGallery
+    } else if (this.state.galleryVisible == 'page') {
+      currentlyVisibleState = comicPageGallery
     } else {
       currentlyVisibleState = <h2>something went wrong</h2>
     }
