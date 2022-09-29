@@ -57,3 +57,7 @@ body {
   }
 }
 
+figure:hover {
+  background-color: orange;
+}
+

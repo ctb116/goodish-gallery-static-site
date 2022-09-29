@@ -108,7 +108,6 @@ const arrayOfPages = [
   }
 ]
 
-//Static Site 
 import React from "react";
 import "./style.css";
 
@@ -172,7 +171,7 @@ class GalleryControl extends React.Component {
     const comicCoverGallery = comics.map((comic) => (
       <figure style={comicCoverStyle}>
         <GalleryTitle title={comic.title}/>
-        <GalleryImage url={comic.titleUrl} imgHeight={'400px'} objectFit={'none'}/>
+        <GalleryImage url={comic.titleUrl} imgHeight={'400px'} objectFit={'scale-down'}/>
         <GalleryDescription description={comic.description}/>
       </figure>
     ))
