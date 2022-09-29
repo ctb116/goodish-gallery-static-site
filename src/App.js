@@ -135,43 +135,44 @@ class GalleryControl extends React.Component {
       flexWrap: 'wrap',
       justifyContent: 'center'
     }
-
-    const pageGalleryStyles = {
-      display: 'grid',
-      // 1 columns, 1 row
-      gridTemplateColumns: 'repeat(1, auto [col-start])',
-      gridTemplateRows: 'repeat(1, auto [row-start])',
-    }
-    
-    
     
     const comicCoverStyle = {
       margin: '15px',
       padding: '5px',
-      backgroundColor: 'green',
+      // backgroundColor: 'green',
       outlineStyle: 'double',
       outlineWidth: 'medium',
       outlineColor: 'white',
     }
     
-    
-    
-    
+    const comicChpStyle = {
+      width: '100%',
+      height: '100%',
+      maxWidth: '125px',
+      maxHeight: '325px',
+      margin: '10px',
+      padding: '5px',
+      // backgroundColor: 'green',
+      outlineStyle: 'double',
+      outlineWidth: 'medium',
+      outlineColor: 'white',
+    }
+
     const comicPageStyle = {
       width: '100%',
       height: '100%',
       margin: '5px',
       padding: '5px',
-      backgroundColor: 'green',
-      outlineStyle: 'double',
-      outlineWidth: 'medium',
-      outlineColor: 'white',
+      // backgroundColor: 'green',
+      // outlineStyle: 'double',
+      // outlineWidth: 'medium',
+      // outlineColor: 'white',
     }
     
     const comicCoverGallery = comics.map((comic) => (
       <figure style={comicCoverStyle}>
         <GalleryTitle title={comic.title}/>
-        <GalleryImage url={comic.titleUrl} imgHeight={'400px'}/>
+        <GalleryImage url={comic.titleUrl} imgHeight={'400px'} objectFit={'none'}/>
         <GalleryDescription description={comic.description}/>
       </figure>
     ))
@@ -179,7 +180,7 @@ class GalleryControl extends React.Component {
     const comicChpGallery = chapters.map((chapter) =>(
       <figure style={comicChpStyle}>
         <GalleryTitle title={chapter.name}/>
-        <GalleryImage url={chapter.pageUrl} imgHeight={'150px'}/>
+        <GalleryImage url={chapter.pageUrl} imgHeight={'150px'} objectFit={'none'}/>
         <GalleryDescription description={chapter.description}/>
         <PageCount chpStart={chapter.chpStart} chpEnd={chapter.chpEnd}/>
       </figure>
@@ -187,10 +188,10 @@ class GalleryControl extends React.Component {
     
     const comicPageGallery = pages.map((page) => (
       <figure style={comicPageStyle}>
-        <GalleryImage url={page.pageUrl}/>
+        <GalleryImage url={page.pageUrl} imgHeight={'100%'} objectFit={'scale-down'}/>
       </figure>
 
-))
+    ))
 
 return (
   <div>
@@ -225,25 +226,13 @@ function GalleryTitle(props) {
     )
   }
   
-  const comicChpStyle = {
-    width: '100%',
-    height: '100%',
-    maxWidth: '125px',
-    maxHeight: '325px',
-    margin: '10px',
-    padding: '5px',
-    backgroundColor: 'green',
-    outlineStyle: 'double',
-    outlineWidth: 'medium',
-    outlineColor: 'white',
-  }
 
   function GalleryImage(props) {
     
     const containImg = {
       width: '100%',
       height: props.imgHeight,
-      objectFit: 'none',
+      objectFit: props.objectFit,
     }
 
     return (

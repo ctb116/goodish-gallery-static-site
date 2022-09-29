@@ -13,14 +13,22 @@ body {
   background-color: blue
 }
 
+/* adding this breaks the layout even though it is the same in App.js */
+/* .galleryStyle {
+  display: 'flex';
+  flex-direction: 'row';
+  flex-wrap: 'wrap';
+  justify-content: 'center'
+} */
+
 /* removes the flexbox */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
   body {
     background-color: lightblue
   }
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 700px) {
   .flexContainer {
     display: flex;
     flex-direction: row;
