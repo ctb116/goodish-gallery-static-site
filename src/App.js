@@ -123,8 +123,8 @@ export default function App() {
 }
 
 class GalleryControl extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       galleryVisible: 'cover'
     };
